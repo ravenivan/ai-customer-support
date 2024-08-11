@@ -13,6 +13,7 @@ Key Responsibilities:
 
 export async function POST(req) {
   const openai = new OpenAI({
+    baseURL: 'https://openrouter.ai/api/v1',
     apiKey: process.env.OPENAI_API_KEY
   }) 
   const data = await req.json()
@@ -20,7 +21,7 @@ export async function POST(req) {
   // Create a chat completion request to the OpenAI API
   const completion = await openai.chat.completions.create({
     messages: [{role: 'system', content: systemPrompt}, ...data], // Include the system prompt and user messages
-    model: 'gpt-4o-mini', // Specify the model to use
+    model: 'meta-llama/llama-3.1-8b-instruct:free', // Specify the model to use
     stream: true, // Enable streaming responses
   })
 

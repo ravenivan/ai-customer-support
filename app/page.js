@@ -23,13 +23,15 @@ export default function Home() {
       {role: "user", content: message},
       {role: "assistant", content: ""}
     ])
-    const response = fetch('/api/chat', {
+    const response = fetch('/api/chat', 
+      {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify([...messages, {role: 'user', content: message}])
-    }).then(async (res) => {
+    }
+    ).then(async (res) => {
       const reader =  res.body.getReader()
       const decoder = new TextDecoder()
 
